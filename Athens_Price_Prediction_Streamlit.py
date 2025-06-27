@@ -463,7 +463,7 @@ def main():
             # Get property type value for the model
             property_type = property_type_mapping[selected_property_display]
             
-            # Auto-determine room type based on property type
+            # Determine room type based on property selection
             if selected_property_display == "Private room in rental unit":
                 room_type = "Private room"
             elif selected_property_display == "Hotel room":
@@ -504,38 +504,36 @@ def main():
             </p>
             """, unsafe_allow_html=True)
             
-            # Create a map centered on Athens with controlled zoom and bounds
+            # Create Athens map with bounds
             m = folium.Map(
                 location=[37.9755, 23.7348],  # Center of Athens
                 zoom_start=13,
-                min_zoom=13,  # Prevent zooming out further than this
-                max_zoom=18,  # Allow zooming in for detail
+                min_zoom=13,
+                max_zoom=18,
                 width="100%",
-                height=250,  # Smaller map for better balance
-                zoom_control=True,  # Enable zoom controls
-                scrollWheelZoom=True,  # Enable scroll wheel zoom
+                height=250,
+                zoom_control=True,
+                scrollWheelZoom=True,
                 dragging=True,
                 doubleClickZoom=False,
                 boxZoom=False,
                 keyboard=False,
                 tiles='OpenStreetMap',
-                max_bounds=True  # Enable bounds restriction
+                max_bounds=True
             )
             
-            # Set extremely tight geographic bounds around Athens core center
-            # Southwest corner: [latitude, longitude]
-            # Northeast corner: [latitude, longitude]
+            # Set geographic bounds for Athens center
             athens_bounds = [
-                [37.96, 23.70],  # Southwest (very tight southern border)
-                [37.99, 23.77]   # Northeast (very tight northern border)
+                [37.96, 23.70],  # Southwest
+                [37.99, 23.77]   # Northeast
             ]
             m.fit_bounds(athens_bounds)
             
-            # Add bounds restriction
+            # Apply bounds restriction
             m.options['maxBounds'] = athens_bounds
-            m.options['maxBoundsViscosity'] = 1.0  # Strong boundary enforcement
+            m.options['maxBoundsViscosity'] = 1.0
             
-            # Add some popular neighborhoods as markers for reference
+            # Popular Athens landmarks
             popular_spots = {
                 "Acropolis": (37.9715, 23.7267),
                 "Plaka": (37.9715, 23.7300),
@@ -547,7 +545,7 @@ def main():
                 "Syntagma": (37.9755, 23.7348)
             }
             
-            # Add markers for popular spots
+            # Add landmark markers
             for name, (lat, lon) in popular_spots.items():
                 folium.Marker(
                     [lat, lon],
@@ -556,7 +554,7 @@ def main():
                     icon=folium.Icon(color='blue', icon='info-sign')
                 ).add_to(m)
             
-            # Add red marker for selected location
+            # Add marker for selected location
             if st.session_state.selected_lat != 37.9755 or st.session_state.selected_lng != 23.7348:
                 folium.Marker(
                     [st.session_state.selected_lat, st.session_state.selected_lng],
@@ -565,15 +563,15 @@ def main():
                     icon=folium.Icon(color='red', icon='home')
                 ).add_to(m)
             
-            # Display the map and get click data
+            # Display map
             map_data = st_folium(m, width="100%", height=250, returned_objects=["last_clicked"])
             
-            # Update session state when map is clicked
+            # Handle map clicks
             if map_data["last_clicked"] is not None:
                 st.session_state.selected_lat = map_data["last_clicked"]["lat"]
                 st.session_state.selected_lng = map_data["last_clicked"]["lng"]
                 st.session_state.selected_neighborhood = "Selected Location"
-                st.rerun()  # Rerun to update the map with the new marker
+                st.rerun()
             
             # Display selected coordinates
             st.markdown(f"""
@@ -633,12 +631,12 @@ def main():
             'maximum_nights': max_nights,
             'availability_365': availability,
             'instant_bookable': 't' if instant_bookable else 'f',
-            'host_since': '2024-01-01',  # New host
-            'host_is_superhost': 'f',  # Removed host details
-            'host_identity_verified': 'f',  # New hosts typically not verified yet
-            'calculated_host_listings_count': 0,  # Removed host details
-            'number_of_reviews': 0,  # New listing has no reviews
-            'review_scores_rating': 4.5  # Default neutral rating for new listings
+            'host_since': '2024-01-01', 
+            'host_is_superhost': 'f',  
+            'host_identity_verified': 'f',  
+            'calculated_host_listings_count': 0,  
+            'number_of_reviews': 0,  
+            'review_scores_rating': 4.5  
         }
         
         try:
@@ -661,7 +659,7 @@ def main():
                 # Model performance in two columns
                 perf_col1, perf_col2 = st.columns(2)
                 
-                # Get performance metrics from the model (with fallback for older models)
+                # Get performance metrics from the model 
                 if hasattr(predictor, 'get_performance_metrics'):
                     metrics = predictor.get_performance_metrics()
                     r2_score = metrics.get('r2_score', 0.76) * 100  # Convert to percentage
