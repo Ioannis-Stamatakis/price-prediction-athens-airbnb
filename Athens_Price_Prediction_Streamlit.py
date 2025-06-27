@@ -447,16 +447,29 @@ def main():
             # Property and Room Type
             prop_col1, prop_col2 = st.columns([1, 1], gap="small")
             with prop_col1:
-                property_type = st.selectbox(
+                # Create mapping for user-friendly names to actual data values
+                property_type_mapping = {
+                    "Entire rental unit": "Entire rental unit",
+                    "Condo": "Entire condo", 
+                    "Private room in rental unit": "Private room in rental unit",
+                    "Hotel room": "Room in hotel",
+                    "Entire home": "Entire home",
+                    "Loft": "Entire loft"
+                }
+                
+                selected_property_display = st.selectbox(
                     "Property Type",
-                    ["Apartment", "House", "Condominium", "Townhouse", "Loft", "Other"],
+                    list(property_type_mapping.keys()),
                     help="What type of property are you listing?"
                 )
+                
+                # Get the actual property type value for the model
+                property_type = property_type_mapping[selected_property_display]
             
             with prop_col2:
                 room_type = st.selectbox(
                     "Room Type",
-                    ["Entire home/apt", "Private room", "Shared room"],
+                    ["Entire home/apt", "Private room", "Hotel room", "Shared room"],
                     help="What are you offering to guests?"
                 )
             
@@ -579,7 +592,7 @@ def main():
             st.rerun()
         
         # Get values from session state
-        property_type = st.session_state.get('property_type', 'Apartment')
+        property_type = st.session_state.get('property_type', 'Entire rental unit')
         room_type = st.session_state.get('room_type', 'Entire home/apt')
         accommodates = st.session_state.get('accommodates', 4)
         bedrooms = st.session_state.get('bedrooms', 2)
