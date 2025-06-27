@@ -1,17 +1,18 @@
 # Athens Airbnb Price Prediction Research
 
-A comprehensive machine learning study for predicting Airbnb prices in Athens, Greece, featuring advanced feature engineering, model comparison, and deployment through an interactive Streamlit application. https://price-prediction-athens-airbnb.streamlit.app 
+A comprehensive machine learning study for predicting Airbnb prices in Athens, Greece, featuring advanced feature engineering, ML-model training and comparison, and deployment through an interactive Streamlit application. https://price-prediction-athens-airbnb.streamlit.app 
 
 ### Table of Contents
 1. **[ Dataset](#dataset)** 
 2. **[ Data Processing](#data-processing)** 
 3. **[ Feature Engineering](#feature-engineering)** 
-4. **[ Model Comparison](#model-comparison)** 
+4. **[ Model Comparison](#model-training)** 
 5. **[ Key Insights](#key-insights)** 
 6. **[ Interactive Web Application](#interactive-web-application)** 
 7. **[ How to Use](#how-to-use)**  
 8. **[ Project Structure](#project-structure)** 
 9. **[ Future Improvements](#future-improvements)** 
+10. **[ Limitations](#limitations)**
 
 ## Dataset
 This dataset contains listings web-scraped from airbnb through an open-source project called Inside.Airbnb.
@@ -32,8 +33,8 @@ The engineered features had a significant impact on model performance
 - **Review Patterns**: Rating scores, review frequency and recency
 - **Booking Dynamics**: Availability patterns, booking flexibility
 
-## Model Comparison
-**In the notebook I compared different machine learning models to see which performs better:**
+## Model Training
+**In the notebook I trained five different machine learning models to see which performs better on real estate data:**
 
 | Model | R² Score | RMSE (€) | MAE (€) |
 |-------|----------|----------|---------|
@@ -44,6 +45,8 @@ The engineered features had a significant impact on model performance
 | Linear Regression | 61.6% | €55.16 | €35.64 |
 
 ![Model Comparison](data/output1.png)
+
+Our comparison shows that Gradient Boosting models perform better than linear and simple random forest models.
 
 **Model Interpretation:**
 - Explains 76% of price variance
@@ -56,7 +59,6 @@ The engineered features had a significant impact on model performance
 2. **Host Quality**: Superhost status and experience significantly affect pricing
 3. **Property Efficiency**: Room density and space efficiency are crucial factors
 4. **Review Patterns**: Both quantity and quality of reviews impact pricing decisions
-5. **Booking Flexibility**: Instant booking and minimum night requirements affect price optimization
 
 ![Athens City](data/output.png)
 
@@ -81,7 +83,7 @@ The model is deployed through a user-friendly Streamlit interface featuring:
 
 ### **Try Locally**
 
-### **Install Requirements**
+**Install Requirements**
 ```bash
 pip install -r requirements.txt
 ```
@@ -129,9 +131,13 @@ Athens-Airbnb-Price-Prediction/
 
 1. **Temporal Analysis**: Seasonal pricing patterns and demand forecasting
 2. **Deep Learning**: Neural network architectures for complex feature interactions
-3. **Multi-City Models**: Generalization across different European cities
+3. **Multi-City Models**: Generalization across different cities
 4. **Dynamic Pricing**: Real-time price optimization algorithms
 5. **External Factors**: Integration of events, weather, and economic indicators
+
+## Limitations
+
+**The dataset provided by inside.airbnb contains listings only near the center of Athens, suburb areas are not included so the prediction of these neighboorhoods will not be accurate**
 
 
 
