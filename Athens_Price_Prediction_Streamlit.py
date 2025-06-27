@@ -406,7 +406,7 @@ def main():
     st.markdown("""
     <div style="text-align: center; margin-bottom: 0.1rem;">
         <h2 style="color: white; font-size: 1rem; font-weight: 400; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); margin: 0;">
-            ML-powered Airbnb price prediction for Athens properties
+            Price prediction for short-term rentals in Athens using machine learning.
         </h2>
     </div>
     """, unsafe_allow_html=True)
