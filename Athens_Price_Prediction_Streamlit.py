@@ -467,9 +467,19 @@ def main():
                 property_type = property_type_mapping[selected_property_display]
             
             with prop_col2:
+                # Dynamic room type options based on property type
+                if selected_property_display in ["Entire rental unit", "Condo", "Entire home", "Loft"]:
+                    room_options = ["Entire home/apt"]
+                elif selected_property_display == "Private room in rental unit":
+                    room_options = ["Private room"]
+                elif selected_property_display == "Hotel room":
+                    room_options = ["Hotel room"]
+                else:
+                    room_options = ["Entire home/apt", "Private room", "Hotel room", "Shared room"]
+                
                 room_type = st.selectbox(
                     "Room Type",
-                    ["Entire home/apt", "Private room", "Hotel room", "Shared room"],
+                    room_options,
                     help="What are you offering to guests?"
                 )
             
