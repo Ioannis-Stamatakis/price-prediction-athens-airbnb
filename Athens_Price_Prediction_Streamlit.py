@@ -444,44 +444,32 @@ def main():
             # Property Details Section
             st.markdown('<h2 class="input-section-header">Property Details</h2>', unsafe_allow_html=True)
             
-            # Property and Room Type
-            prop_col1, prop_col2 = st.columns([1, 1], gap="small")
-            with prop_col1:
-                # Create mapping for user-friendly names to actual data values
-                property_type_mapping = {
-                    "Entire rental unit": "Entire rental unit",
-                    "Condo": "Entire condo", 
-                    "Private room in rental unit": "Private room in rental unit",
-                    "Hotel room": "Room in hotel",
-                    "Entire home": "Entire home",
-                    "Loft": "Entire loft"
-                }
-                
-                selected_property_display = st.selectbox(
-                    "Property Type",
-                    list(property_type_mapping.keys()),
-                    help="What type of property are you listing?"
-                )
-                
-                # Get the actual property type value for the model
-                property_type = property_type_mapping[selected_property_display]
+            # Property Type Selection
+            property_type_mapping = {
+                "Entire rental unit": "Entire rental unit",
+                "Condo": "Entire condo", 
+                "Private room in rental unit": "Private room in rental unit",
+                "Hotel room": "Room in hotel",
+                "Entire home": "Entire home",
+                "Loft": "Entire loft"
+            }
             
-            with prop_col2:
-                # Dynamic room type options based on property type
-                if selected_property_display in ["Entire rental unit", "Condo", "Entire home", "Loft"]:
-                    room_options = ["Entire home/apt"]
-                elif selected_property_display == "Private room in rental unit":
-                    room_options = ["Private room"]
-                elif selected_property_display == "Hotel room":
-                    room_options = ["Hotel room"]
-                else:
-                    room_options = ["Entire home/apt", "Private room", "Hotel room", "Shared room"]
-                
-                room_type = st.selectbox(
-                    "Room Type",
-                    room_options,
-                    help="What are you offering to guests?"
-                )
+            selected_property_display = st.selectbox(
+                "Property Type",
+                list(property_type_mapping.keys()),
+                help="What type of property are you listing?"
+            )
+            
+            # Get property type value for the model
+            property_type = property_type_mapping[selected_property_display]
+            
+            # Auto-determine room type based on property type
+            if selected_property_display == "Private room in rental unit":
+                room_type = "Private room"
+            elif selected_property_display == "Hotel room":
+                room_type = "Hotel room"
+            else:
+                room_type = "Entire home/apt"
             
             # Capacity and Rooms in 2x2 grid
             st.markdown('<h2 class="input-section-header">Capacity & Rooms</h2>', unsafe_allow_html=True)
