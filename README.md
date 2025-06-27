@@ -24,14 +24,12 @@ This dataset contains listings web-scraped from airbnb through an open-source pr
 
 ## Data Processing
 Cleaned price column, removed outliers, fixed property type text issues and more dataset refinement
+**Cleaned Price Column:** Removed currency sign, 
 **Outlier Removal:**
 - Conservative approach using 0.5% and 99.5% quantiles for price filtering
-- Removes extreme outliers while preserving data integrity
 
-**Missing Value Strategy:**
-- **Numerical features**: Median imputation for robust handling
-- **Categorical features**: Mode imputation with "Unknown" category
-- **Review features**: Zero-fill for new listings without reviews
+
+
 
 ## Feature Engineering
 The engineered features had a significant impact on model performance
@@ -60,10 +58,15 @@ After extensive feature engineering, the final model uses **26 key features** th
 
 ### **Data Preprocessing Pipeline**
 
+**Missing Value Imputation Strategy:**
+- **Numerical features**: Median imputation for robust handling
+- **Categorical features**: Fill Null with "Unknown" category
+- **Review features**: Fill 0 for new listings without reviews
+
 **Feature Scaling:**
 - **StandardScaler** applied to all numerical features
 - Ensures equal weight across features with different scales
-- Critical for gradient-based algorithms
+- Critical for XGBoost, not needed for LightGBM
 
 **Categorical Encoding:**
 - **Label Encoding** for ordinal categorical variables
@@ -78,17 +81,20 @@ After extensive feature engineering, the final model uses **26 key features** th
 ## Model Training
 **In the notebook I trained five different machine learning models to see which performs better on real estate data:**
 
-| Model | R² Score | RMSE (€) | MAE (€) |
-|-------|----------|----------|---------|
-| **XGBoost** | **76.0%** | **€43.65** | **€24.28** |
-| LightGBM | 75.9% | €44.08 | €24.90 |
-| Gradient Boosting | 75.5% | €44.08 | €24.90 |
-| Random Forest | 72.2% | €46.95 | €26.30 |
-| Linear Regression | 61.6% | €55.16 | €35.64 |
+| Model | R² Score | RMSE (€) | MAE (€) | Training Time (s) |
+|-------|----------|----------|---------|-------------------|
+| Gradient Boosting | 75.8% | €43.77 | €24.66 | **6.07** |
+| XGBoost | 75.7% | €43.86 | €24.59 | **0.59** |
+| LightGBM | 74.8% | €44.67 | €25.37 | 0.96 |
+| Random Forest | 72.2% | €46.94 | €26.31 | 0.81 |
+| Linear Regression | 45.7% | €65.64 | €41.26 | 0.01 |
+
+XGBoost and Gradient Boosting perform almost identically, sometimes scoring slightly different because of the random training sample scale.
+The biggest advantage of XGBoost is the significant faster training time.
 
 ![Model Comparison](data/output1.png)
 
-Our comparison shows that Gradient Boosting models perform better than linear and simple random forest models.
+Our comparison shows that Gradient Boosting models perform better than linear and simple random forest models on complex data like real estate.
 
 **Model Interpretation:**
 - Explains 76% of price variance
@@ -108,15 +114,10 @@ Our comparison shows that Gradient Boosting models perform better than linear an
 
 The model is deployed through a user-friendly Streamlit interface featuring:
 
-### **Core Features**
-- **Interactive Map**: Click-to-select property location in Athens
-- **Real-time Predictions**: Instant price estimates based on input parameters
+### **Features**
+- **Interactive Map**: Interactive map to select property location in Athens
+- **Real-time Predictions**: Instant price estimates based on input parameters using XGBoost model
 - **Model Transparency**: Display of actual performance metrics
-
-### **Technical Implementation**
-- **Frontend**: Streamlit with custom CSS styling
-- **Backend**: Scikit-learn pipeline with XGBoost
-- **Deployment**: Streamlit Cloud
 
 ## How to Use
 
