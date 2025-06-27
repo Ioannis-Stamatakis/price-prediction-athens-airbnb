@@ -24,9 +24,8 @@ This dataset contains listings web-scraped from airbnb through an open-source pr
 
 ## Data Processing
 Cleaned price column, removed outliers, fixed property type text issues and more dataset refinement
-**Cleaned Price Column:** Removed currency sign, 
-**Outlier Removal:**
-- Conservative approach using 0.5% and 99.5% quantiles for price filtering
+- **Cleaned Price Column:** - Removed currency sign
+- **Outlier Removal:** - Conservative approach using 0.5% and 99.5% quantiles for price filtering
 
 
 
