@@ -504,7 +504,7 @@ def main():
             </p>
             """, unsafe_allow_html=True)
             
-            # Create a map centered on Athens with controlled zoom
+            # Create a map centered on Athens with controlled zoom and bounds
             m = folium.Map(
                 location=[37.9755, 23.7348],  # Center of Athens
                 zoom_start=13,
@@ -518,8 +518,22 @@ def main():
                 doubleClickZoom=False,
                 boxZoom=False,
                 keyboard=False,
-                tiles='OpenStreetMap'
+                tiles='OpenStreetMap',
+                max_bounds=True  # Enable bounds restriction
             )
+            
+            # Set geographic bounds to restrict movement to Athens area
+            # Southwest corner: [latitude, longitude]
+            # Northeast corner: [latitude, longitude]
+            athens_bounds = [
+                [37.85, 23.60],  # Southwest (covers Piraeus)
+                [38.10, 23.85]   # Northeast (covers northern suburbs)
+            ]
+            m.fit_bounds(athens_bounds)
+            
+            # Add bounds restriction
+            m.options['maxBounds'] = athens_bounds
+            m.options['maxBoundsViscosity'] = 1.0  # Strong boundary enforcement
             
             # Add some popular neighborhoods as markers for reference
             popular_spots = {
