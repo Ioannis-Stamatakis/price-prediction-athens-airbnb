@@ -6,13 +6,14 @@ A comprehensive machine learning study for predicting Airbnb prices in Athens, G
 1. **[ Dataset](#dataset)** 
 2. **[ Data Processing](#data-processing)** 
 3. **[ Feature Engineering](#feature-engineering)** 
-4. **[ Model Comparison](#model-training)** 
-5. **[ Key Insights](#key-insights)** 
-6. **[ Interactive Web Application](#interactive-web-application)** 
-7. **[ How to Use](#how-to-use)**  
-8. **[ Project Structure](#project-structure)** 
-9. **[ Future Improvements](#future-improvements)** 
-10. **[ Limitations](#limitations)**
+4. **[ Feature Selection & Model Preprocessing](#feature-selection--model-preprocessing)**
+5. **[ Model Comparison](#model-training)** 
+6. **[ Key Insights](#key-insights)** 
+7. **[ Interactive Web Application](#interactive-web-application)** 
+8. **[ How to Use](#how-to-use)**  
+9. **[ Project Structure](#project-structure)** 
+10. **[ Future Improvements](#future-improvements)** 
+11. **[ Limitations](#limitations)**
 
 ## Dataset
 This dataset contains listings web-scraped from airbnb through an open-source project called Inside.Airbnb.
@@ -23,6 +24,14 @@ This dataset contains listings web-scraped from airbnb through an open-source pr
 
 ## Data Processing
 Cleaned price column, removed outliers, fixed property type text issues and more dataset refinement
+**Outlier Removal:**
+- Conservative approach using 0.5% and 99.5% quantiles for price filtering
+- Removes extreme outliers while preserving data integrity
+
+**Missing Value Strategy:**
+- **Numerical features**: Median imputation for robust handling
+- **Categorical features**: Mode imputation with "Unknown" category
+- **Review features**: Zero-fill for new listings without reviews
 
 ## Feature Engineering
 The engineered features had a significant impact on model performance
@@ -32,6 +41,39 @@ The engineered features had a significant impact on model performance
 - **Host Quality**: Experience, superhost status, verification metrics  
 - **Review Patterns**: Rating scores, review frequency and recency
 - **Booking Dynamics**: Availability patterns, booking flexibility
+
+## Feature Selection & Model Preprocessing
+
+### **Feature Selection**
+After extensive feature engineering, the final model uses **26 key features** that demonstrated the highest predictive power:
+
+**Numerical Features (23):**
+- `accommodates`, `bedrooms`, `beds`, `bathrooms`, `minimum_nights`, `maximum_nights`
+- `calculated_host_listings_count`, `distance_acropolis`, `room_density`
+- `bathroom_bedroom_ratio`, `space_efficiency`, `host_experience_years`
+- `availability_ratio`, `is_superhost`, `is_instant_bookable`
+- `review_count_log`, `has_reviews`, `review_scores_rating`, `high_rating`
+- `is_new_host`, `low_availability`, `host_verified`, `min_nights_category`
+
+**Categorical Features (3):**
+- `property_type`, `room_type`, `neighbourhood_cleansed`
+
+### **Data Preprocessing Pipeline**
+
+**Feature Scaling:**
+- **StandardScaler** applied to all numerical features
+- Ensures equal weight across features with different scales
+- Critical for gradient-based algorithms
+
+**Categorical Encoding:**
+- **Label Encoding** for ordinal categorical variables
+- **Top-20 category preservation** for high-cardinality features (neighborhoods)
+- Rare categories grouped into "Other" to prevent overfitting
+
+**Train/Test Split:**
+- **80/20 split** with stratified sampling by neighborhood
+- **Random state fixed** for reproducible results
+- Separate preprocessing pipelines to prevent data leakage
 
 ## Model Training
 **In the notebook I trained five different machine learning models to see which performs better on real estate data:**
