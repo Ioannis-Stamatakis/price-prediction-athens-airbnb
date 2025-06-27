@@ -92,7 +92,7 @@ After extensive feature engineering, the final model uses **26 key features** th
 XGBoost and Gradient Boosting perform almost identically, sometimes scoring slightly different because of the random training sample scale.
 The biggest advantage of XGBoost is the significant faster training time.
 
-![Model Comparison](data/output1.png)
+![Model Comparison](data/comparison.png)
 
 Our comparison shows that Gradient Boosting models perform better than linear and simple random forest models on complex datasets
 
