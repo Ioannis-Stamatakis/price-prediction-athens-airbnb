@@ -444,7 +444,7 @@ def main():
             # Property Details Section
             st.markdown('<h2 class="input-section-header">Property Details</h2>', unsafe_allow_html=True)
             
-            # Property and Room Type in two columns with smaller gap
+            # Property and Room Type
             prop_col1, prop_col2 = st.columns([1, 1], gap="small")
             with prop_col1:
                 property_type = st.selectbox(
@@ -531,7 +531,7 @@ def main():
                     icon=folium.Icon(color='blue', icon='info-sign')
                 ).add_to(m)
             
-            # Add red marker for previously selected location
+            # Add red marker for selected location
             if st.session_state.selected_lat != 37.9755 or st.session_state.selected_lng != 23.7348:
                 folium.Marker(
                     [st.session_state.selected_lat, st.session_state.selected_lng],
@@ -565,7 +565,7 @@ def main():
         st.markdown("<br>", unsafe_allow_html=True)
         col1, col2, col3 = st.columns([1, 1, 1])
         with col2:
-            if st.button("🔮 Predict Price", type="primary"):
+            if st.button("Predict Price", type="primary"):
                 st.session_state.show_results = True
                 st.rerun()
         
@@ -639,12 +639,12 @@ def main():
                 # Get performance metrics from the model (with fallback for older models)
                 if hasattr(predictor, 'get_performance_metrics'):
                     metrics = predictor.get_performance_metrics()
-                    r2_score = metrics.get('r2_score', 0.763) * 100  # Convert to percentage
+                    r2_score = metrics.get('r2_score', 0.76) * 100  # Convert to percentage
                     mae = metrics.get('mae', 24.32)
                     rmse = metrics.get('rmse', 43.38)
                 else:
                     # Fallback values for older model versions
-                    r2_score = 76.3
+                    r2_score = 76
                     mae = 24.32
                     rmse = 43.38
                 
