@@ -4,11 +4,11 @@ A comprehensive machine learning study for predicting Airbnb prices in Athens, G
  
 ## Table of Contents
 1. **[ Dataset](#dataset)** 
-2. **[ Data Processing](#data-processing)** 
+2. **[ Data Cleaning](#data-cleaning)** 
 3. **[ Feature Engineering](#feature-engineering)** 
 4. **[ Feature Selection & Model Preprocessing](#feature-selection--model-preprocessing)**
 5. **[ Model Comparison](#model-training)** 
-6. **[ Key Insights](#key-insights)** 
+6. **[ Top Features](#top-performing-features)** 
 7. **[ Interactive Web Application](#interactive-web-application)** 
 8. **[ How to Use](#how-to-use)**  
 9. **[ Project Structure](#project-structure)** 
@@ -22,19 +22,22 @@ This dataset contains listings web-scraped from airbnb through an open-source pr
 - **Features**: Property characteristics, host information, location data, review metrics
 - **Target**: Nightly rental price (EUR)
 
-## Data Processing
-Cleaned price column, removed outliers, fixed property type text issues and more dataset refinement
-- **Cleaned Price Column:** - Removed currency sign
+## Data Cleaning
+
+- **Price Column:** - Removed currency sign
 - **Outlier Removal:** - Conservative approach using 0.5% and 99.5% quantiles for price filtering
+- **Propery Type Column:** - Cleaned similar names and removed types that appear rarely
 
 ## Feature Engineering
-The engineered features had a significant impact on model performance
 
 - **Location Features**: Distance to Acropolis using manhattan calculation, neighborhood encoding
 - **Property Efficiency**: Room density, space utilization ratios
 - **Host Quality**: Experience, superhost status, verification metrics  
 - **Review Patterns**: Rating scores, review frequency and recency
 - **Booking Dynamics**: Availability patterns, booking flexibility
+
+**Distance from Acropolis shows significant price correlation**
+![Athens City](data/output.png)
 
 ## Feature Selection & Model Preprocessing
 
@@ -52,7 +55,10 @@ After extensive feature engineering, the final model uses **26 key features** th
 **Categorical Features (3):**
 - `property_type`, `room_type`, `neighbourhood_cleansed`
 
-### **Data Preprocessing Pipeline**
+**Feature Correlation Matrix** (including price)
+![Correlation Matrix](data/corr.png)
+
+### **Data Preprocessing **
 
 **Missing Value Imputation Strategy:**
 - **Numerical features**: Median imputation for robust handling
@@ -72,7 +78,6 @@ After extensive feature engineering, the final model uses **26 key features** th
 **Train/Test Split:**
 - **80/20 split** with stratified sampling by neighborhood
 - **Random state fixed** for reproducible results
-- Separate preprocessing pipelines to prevent data leakage
 
 ## Model Training
 **In the notebook I trained five different machine learning models to see which performs better on real estate data:**
@@ -90,21 +95,59 @@ The biggest advantage of XGBoost is the significant faster training time.
 
 ![Model Comparison](data/output1.png)
 
-Our comparison shows that Gradient Boosting models perform better than linear and simple random forest models on complex data like real estate.
+Our comparison shows that Gradient Boosting models perform better than linear and simple random forest models on complex datasets
 
 **Model Interpretation:**
 - Explains 76% of price variance
 - Average prediction error: €24 per night
 - Strong performance across all property types and neighborhoods
 
-## Key Insights
+## Top Performing Features
 
-1. **Location Impact**: Distance to major attractions (Acropolis) shows strong predictive power
-2. **Host Quality**: Superhost status and experience significantly affect pricing
-3. **Property Efficiency**: Room density and space efficiency are crucial factors
-4. **Review Patterns**: Both quantity and quality of reviews impact pricing decisions
+Based on feature importance analysis across all five models, here are the key insights from Athens Airbnb pricing patterns:
 
-![Athens City](data/output.png)
+### **Most Critical Features**
+
+**1. Host Credibility & Portfolio (Dominant Factors)**
+- **`host_verified`** (22% importance in XGBoost): Identity verification is the single most important pricing factor
+- **`calculated_host_listings_count`** (43% in Random Forest, 15% in XGBoost): Professional hosts with multiple properties command significantly higher prices
+
+**2. Property Fundamentals (Core Drivers)**
+- **`bedrooms`** (8-10% across models): Primary determinant of accommodation capacity
+- **`bathrooms`** (5-8% across models): Essential amenity that directly impacts pricing
+- **`accommodates`** (3-4% across models): Guest capacity baseline for price calculation
+
+**3. Location Intelligence (Consistent Predictor)**
+- **`distance_acropolis`** (10% in Random Forest, 2% in XGBoost): Proximity to Athens' main attraction
+
+**4. Host Experience & Quality**
+- **`host_experience_years`** (4% importance): Seasoned hosts optimize pricing better
+- **`review_scores_rating`** (3% importance): High ratings enable premium pricing
+- **`review_count_log`** (2-3% importance): Review volume builds pricing confidence
+
+**5. Property Management Strategy**
+- **`availability_ratio`** (3-4% importance): Strategic availability management affects pricing
+- **`property_type`** (3-5% importance): Property classification impacts market positioning
+
+### ** Key Business Insights**
+
+**Trust Beats Everything**: Host verification and professional portfolio size outweigh property characteristics in pricing power. A verified host with multiple listings can charge premium rates even for average properties.
+
+**Location Pays**: The engineered distance-to-Acropolis feature proves location premium is quantifiable. Properties within walking distance of major attractions command measurable premiums.
+
+**Experience Premium**: Hosts with years of experience and high review scores can optimize pricing strategies that newer hosts cannot match.
+
+**Professional vs Amateur Gap**: The importance of `calculated_host_listings_count` reveals a significant pricing gap between occasional hosts (1-2 listings) and professional operators (5+ listings).
+
+### **Model Consensus**
+Features that appear as top-10 across multiple models:
+- `calculated_host_listings_count` (universal top-3)
+- `bedrooms` & `bathrooms` (consistent across all models)  
+- `distance_acropolis` (top-10 in 4/5 models)
+
+This cross-model agreement validates these features as truly fundamental to short-term rental pricing dynamics.
+
+
 
 ## Interactive Web Application
 
