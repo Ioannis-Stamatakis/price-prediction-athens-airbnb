@@ -1,8 +1,8 @@
 # Athens Airbnb Price Prediction Research
 
-A comprehensive machine learning study for predicting Airbnb prices in Athens, Greece, featuring advanced feature engineering, ML-model training and comparison, and deployment through an interactive Streamlit application. https://price-prediction-athens-airbnb.streamlit.app 
-
-### Table of Contents
+A comprehensive machine learning study for predicting Airbnb prices in Athens, Greece, featuring advanced feature engineering, ML-model training and comparison, and deployment through an interactive Streamlit application. **[Try on Streamlit Cloud](https://price-prediction-athens-airbnb.streamlit.app/)**
+ 
+## Table of Contents
 1. **[ Dataset](#dataset)** 
 2. **[ Data Processing](#data-processing)** 
 3. **[ Feature Engineering](#feature-engineering)** 
@@ -26,9 +26,6 @@ This dataset contains listings web-scraped from airbnb through an open-source pr
 Cleaned price column, removed outliers, fixed property type text issues and more dataset refinement
 - **Cleaned Price Column:** - Removed currency sign
 - **Outlier Removal:** - Conservative approach using 0.5% and 99.5% quantiles for price filtering
-
-
-
 
 ## Feature Engineering
 The engineered features had a significant impact on model performance
@@ -97,7 +94,7 @@ Our comparison shows that Gradient Boosting models perform better than linear an
 
 **Model Interpretation:**
 - Explains 76% of price variance
-- Average prediction error: €24.28 per night
+- Average prediction error: €24 per night
 - Strong performance across all property types and neighborhoods
 
 ## Key Insights
@@ -121,7 +118,7 @@ The model is deployed through a user-friendly Streamlit interface featuring:
 ## How to Use
 
 ### **Live Web Application** 
- **[Try the Live Demo on Streamlit Cloud](https://price-prediction-athens-airbnb.streamlit.app/)**
+ **[Try the app on Streamlit Cloud](https://price-prediction-athens-airbnb.streamlit.app/)**
 
 ### **Try Locally**
 
