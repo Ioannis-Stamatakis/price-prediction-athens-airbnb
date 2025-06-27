@@ -522,12 +522,12 @@ def main():
                 max_bounds=True  # Enable bounds restriction
             )
             
-            # Set tight geographic bounds around Athens city center with north/south extension
+            # Set very tight geographic bounds around Athens city center
             # Southwest corner: [latitude, longitude]
             # Northeast corner: [latitude, longitude]
             athens_bounds = [
-                [37.92, 23.68],  # Southwest (southern Athens center)
-                [38.02, 23.79]   # Northeast (northern Athens center)
+                [37.94, 23.68],  # Southwest (tight southern border)
+                [38.00, 23.79]   # Northeast (tight northern border)
             ]
             m.fit_bounds(athens_bounds)
             
