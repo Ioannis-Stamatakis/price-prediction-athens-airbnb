@@ -9,11 +9,10 @@ A comprehensive machine learning study for predicting Airbnb prices in Athens, G
 4. **[ Feature Selection & Model Preprocessing](#feature-selection--model-preprocessing)**
 5. **[ Model Comparison](#model-training)** 
 6. **[ Top Features](#top-performing-features)** 
-7. **[ Interactive Web Application](#interactive-web-application)** 
-8. **[ How to Use](#how-to-use)**  
-9. **[ Project Structure](#project-structure)** 
-10. **[ Future Improvements](#future-improvements)** 
-11. **[ Limitations](#limitations)**
+7. **[ How to Use](#how-to-use)**  
+8. **[ Project Structure](#project-structure)** 
+9. **[ Future Improvements](#future-improvements)** 
+10. **[ Limitations](#limitations)**
 
 ## Dataset
 This dataset contains listings web-scraped from airbnb through an open-source project called Inside.Airbnb.
@@ -58,7 +57,7 @@ After extensive feature engineering, the final model uses **26 key features** th
 **Feature Correlation Matrix** (including price)
 ![Correlation Matrix](data/corr.png)
 
-### **Data Preprocessing **
+### **Data Preprocessing**
 
 **Missing Value Imputation Strategy:**
 - **Numerical features**: Median imputation for robust handling
@@ -129,7 +128,7 @@ Based on feature importance analysis across all five models, here are the key in
 - **`availability_ratio`** (3-4% importance): Strategic availability management affects pricing
 - **`property_type`** (3-5% importance): Property classification impacts market positioning
 
-### ** Key Business Insights**
+### **Key Business Insights**
 
 **Trust Beats Everything**: Host verification and professional portfolio size outweigh property characteristics in pricing power. A verified host with multiple listings can charge premium rates even for average properties.
 
@@ -146,17 +145,6 @@ Features that appear as top-10 across multiple models:
 - `distance_acropolis` (top-10 in 4/5 models)
 
 This cross-model agreement validates these features as truly fundamental to short-term rental pricing dynamics.
-
-
-
-## Interactive Web Application
-
-The model is deployed through a user-friendly Streamlit interface featuring:
-
-### **Features**
-- **Interactive Map**: Interactive map to select property location in Athens
-- **Real-time Predictions**: Instant price estimates based on input parameters using XGBoost model
-- **Model Transparency**: Display of actual performance metrics
 
 ## How to Use
 
