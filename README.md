@@ -10,10 +10,11 @@ A comprehensive machine learning study for predicting short-term rental prices i
 4. **[ Feature Selection & Model Preprocessing](#feature-selection--model-preprocessing)**
 5. **[ Model Comparison](#model-training)** 
 6. **[ Top Features](#top-performing-features)** 
-7. **[ How to Use](#how-to-use)**  
-8. **[ Project Structure](#project-structure)** 
-9. **[ Future Improvements](#future-improvements)** 
-10. **[ Limitations](#limitations)**
+7. **[ Key Business insights](#key-business-insights)**
+8. **[ How to Use](#how-to-use)**  
+9. **[ Project Structure](#project-structure)** 
+10. **[ Future Improvements](#future-improvements)** 
+11. **[ Limitations](#limitations)**
 
 ## Dataset
 This dataset contains listings web-scraped from airbnb through an open-source project called Inside.Airbnb.
