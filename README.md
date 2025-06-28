@@ -122,23 +122,21 @@ Based on feature importance analysis across all five models, here are the key in
 - **`availability_ratio`** (3-4% importance): Strategic availability management affects pricing
 - **`property_type`** (3-5% importance): Property classification impacts market positioning
 
-### **Key Business Insights**
+Features that appear as top-10 across multiple models:
+- `calculated_host_listings_count` (universal top-3)
+- `bedrooms` & `bathrooms` (consistent across all models)  
+- `distance_acropolis` (top-10 in 4/5 models)
+This cross-model agreement validates these features as truly fundamental to short-term rental pricing dynamics.
 
-**Trust Beats Everything**: Host verification and professional portfolio size outweigh property characteristics in pricing power. A verified host with multiple listings can charge premium rates even for average properties.
+## **Key Business Insights**
+
+**Trust Beats Everything**: Host verification and professional portfolio size outweigh property characteristics in pricing power. A verified host appears more trusted to the customer.
 
 **Location Pays**: The engineered distance-to-Acropolis feature proves location premium is quantifiable. Properties within walking distance of major attractions command measurable premiums.
 
 **Experience Premium**: Hosts with years of experience and high review scores can optimize pricing strategies that newer hosts cannot match.
 
-**Professional vs Amateur Gap**: The importance of `calculated_host_listings_count` reveals a significant pricing gap between occasional hosts (1-2 listings) and professional operators (5+ listings).
-
-### **Model Consensus**
-Features that appear as top-10 across multiple models:
-- `calculated_host_listings_count` (universal top-3)
-- `bedrooms` & `bathrooms` (consistent across all models)  
-- `distance_acropolis` (top-10 in 4/5 models)
-
-This cross-model agreement validates these features as truly fundamental to short-term rental pricing dynamics.
+**Professional vs Amateur Gap**: The importance of `calculated_host_listings_count` reveals a significant pricing gap between occasional hosts (1-2 listings) and professional operators (5+ listings), probably due to more premium offerings and amenities
 
 ## How to Use
 
