@@ -97,6 +97,8 @@ The biggest advantage of XGBoost is the significant faster training time.
 
 ## Top Performing Features
 
+![Feature Importance](data/importance.png.png)
+
 Based on feature importance analysis across all five models, here are the key insights from Athens Airbnb pricing patterns:
 
 ### **Most Critical Features**
