@@ -1,6 +1,7 @@
-# Athens Airbnb Price Prediction Research
+# Short-term Rentals Price Prediction
 
-A comprehensive machine learning study for predicting Airbnb prices in Athens, Greece, featuring advanced feature engineering, ML-model training and comparison, and deployment through an interactive Streamlit application. **[Try on Streamlit Cloud](https://price-prediction-athens-airbnb.streamlit.app/)**
+A comprehensive machine learning study for predicting short-term rental prices in Athens, Greece, featuring advanced feature engineering, ML-model training and comparison, and deployment through an interactive Streamlit application.
+**[Try on Streamlit Cloud](https://price-prediction-athens-airbnb.streamlit.app/)**
  
 ## Table of Contents
 1. **[ Dataset](#dataset)** 
@@ -79,7 +80,7 @@ After extensive feature engineering, the final model uses **26 key features** th
 - **Random state fixed** for reproducible results
 
 ## Model Training
-**In the notebook I trained five different machine learning models to see which performs better on real estate data:**
+**In the jupyter notebook I trained five different machine learning models to see which performs better using R², RMSE, MAE, Training Time as model evaluation metrics**
 
 | Model | R² Score | RMSE (€) | MAE (€) | Training Time (s) |
 |-------|----------|----------|---------|-------------------|
