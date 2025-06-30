@@ -45,19 +45,18 @@ This dataset contains listings web-scraped from airbnb through an open-source pr
 ### **Feature Selection**
 After extensive feature engineering, the final model uses **26 key features** that demonstrated the highest predictive power:
 
-**Numerical Features (23):**
+**Numerical Features (19):**
 - `accommodates`, `bedrooms`, `beds`, `bathrooms`, `minimum_nights`, `maximum_nights`
-- `calculated_host_listings_count`, `distance_acropolis`, `room_density`
-- `bathroom_bedroom_ratio`, `space_efficiency`, `host_experience_years`
-- `availability_ratio`, `is_superhost`, `is_instant_bookable`
-- `review_count_log`, `has_reviews`, `review_scores_rating`, `high_rating`
+- `calculated_host_listings_count`, `distance_acropolis`
+- `host_experience_years` ,`availability_ratio`, `is_superhost`, `is_instant_bookable`
+- `review_count_log`, `has_reviews`, `review_scores_rating`
 - `is_new_host`, `low_availability`, `host_verified`, `min_nights_category`
 
 **Categorical Features (3):**
 - `property_type`, `room_type`, `neighbourhood_cleansed`
 
 **Feature Correlation Matrix** (including price)
-![Correlation Matrix](data/corr.png)
+![Correlation Matrix](data/corr1.png)
 
 ### **Data Preprocessing**
 

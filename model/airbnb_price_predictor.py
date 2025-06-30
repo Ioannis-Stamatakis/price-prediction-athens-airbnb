@@ -54,13 +54,6 @@ class AirbnbPredictor:
         if 'latitude' in df.columns and 'longitude' in df.columns:
             df['distance_acropolis'] = (np.abs(df['latitude'] - 37.9715) + 
                            np.abs(df['longitude'] - 23.7267) * np.cos(np.radians(37.9715))) * 111.32
-        # Critical engineered features
-        if 'accommodates' in df.columns and 'bedrooms' in df.columns:
-            df['room_density'] = df['accommodates'] / df['bedrooms'].replace(0, 1)
-            df['space_efficiency'] = df['accommodates'] / (df['bedrooms'].replace(0, 1) + df.get('bathrooms', 1))
-        
-        if 'bedrooms' in df.columns and 'bathrooms' in df.columns:
-            df['bathroom_bedroom_ratio'] = df['bathrooms'] / df['bedrooms'].replace(0, 1)
         
         # Host experience (more detailed)
         if 'host_since' in df.columns:
@@ -76,7 +69,6 @@ class AirbnbPredictor:
         
         if 'review_scores_rating' in df.columns:
             df['review_scores_rating'] = df['review_scores_rating'].fillna(df['review_scores_rating'].median())
-            df['high_rating'] = (df['review_scores_rating'] >= 4.5).astype(int)
         
         # Availability and booking features
         if 'availability_365' in df.columns:
@@ -116,9 +108,9 @@ class AirbnbPredictor:
         numeric_features = [
             'accommodates', 'bedrooms', 'beds', 'bathrooms', 
             'minimum_nights', 'maximum_nights', 'calculated_host_listings_count',
-            'distance_acropolis', 'room_density', 'bathroom_bedroom_ratio', 'space_efficiency',
+            'distance_acropolis', 
             'host_experience_years', 'availability_ratio', 'is_superhost', 'is_instant_bookable',
-            'review_count_log', 'has_reviews', 'review_scores_rating', 'high_rating',
+            'review_count_log', 'has_reviews', 'review_scores_rating',
             'is_new_host', 'low_availability', 'host_verified', 'min_nights_category'
         ]
         categorical_features = ['property_type', 'room_type', 'neighbourhood_cleansed']
