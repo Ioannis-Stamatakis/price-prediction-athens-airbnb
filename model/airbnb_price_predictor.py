@@ -225,9 +225,9 @@ class AirbnbPredictor:
         defaults = {
             'accommodates': 2, 'bedrooms': 1, 'beds': 1, 'bathrooms': 1.0,
             'minimum_nights': 1, 'maximum_nights': 365, 'calculated_host_listings_count': 1,
-            'distance_acropolis': 5.0, 'room_density': 2.0, 'bathroom_bedroom_ratio': 1.0, 'space_efficiency': 1.0,
+            'distance_acropolis': 5.0,
             'host_experience_years': 0, 'availability_ratio': 0.8, 'is_superhost': 0, 'is_instant_bookable': 0,
-            'review_count_log': 0, 'has_reviews': 0, 'review_scores_rating': 4.5, 'high_rating': 1,
+            'review_count_log': 0, 'has_reviews': 0, 'review_scores_rating': 4.5,
             'is_new_host': 1, 'low_availability': 0, 'host_verified': 0, 'min_nights_category': 1,
             'property_type': 'Entire rental unit', 'room_type': 'Entire home/apt', 'neighbourhood_cleansed': 'Other'
         }
