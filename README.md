@@ -84,13 +84,13 @@ After extensive feature engineering, the final model uses **26 key features** th
 
 | Model | R² Score | RMSE (€) | MAE (€) | Training Time (s) |
 |-------|----------|----------|---------|-------------------|
-| XGBoost | 75.8% | €43.78 | €24.39 | **0.61** |
-| Gradient Boosting | 75.5% | €44.03 | €24.81 | **6.18** |
+| XGBoost | 76% | €43.54 | €24.44 | **0.86** |
+| Gradient Boosting | 75.4% | €44.16 | €25.031 | **6.18** |
 | LightGBM | 74.8% | €44.67 | €25.37 | 0.96 |
 | Random Forest | 72.2% | €46.94 | €26.31 | 0.81 |
 | Linear Regression | 45.7% | €65.64 | €41.26 | 0.01 |
 
-![Model Comparison](data/comparison.png)
+![Model Comparison](data/comparison1.png)
 
 XGBoost and Gradient Boosting perform almost identically, sometimes scoring slightly different because of the random training sample scale.
 The biggest advantage of XGBoost is the significant faster training time.
