@@ -2,6 +2,7 @@
 
 A comprehensive machine learning study for predicting short-term rental prices in Athens, Greece, featuring advanced feature engineering, ML-model training and comparison, and deployment through an interactive Streamlit application.
 **[Try on Streamlit Cloud](https://price-prediction-athens-airbnb.streamlit.app/)**
+
 *NOTICE: The model on the Streamlit Cloud is overfitted, on the notebook i introduced early stopping on XGBoost and reduced overfitting a lot. Even though model performanced dropped a bit it is much more robust and will make better predictions on new data*
  
 ## Table of Contents
